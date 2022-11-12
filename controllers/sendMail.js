@@ -27,7 +27,7 @@ const sendMail = async (mail, code) => {
   const mailOptions = {
     from: GOOGLE_USER,
     to: mail,
-    subject: "Please verify your Mind-Grow account",
+    subject: "Please verify your Dripping account",
     html: `
             <div>
                 <h1>${mail}</h1>
