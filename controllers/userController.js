@@ -8,7 +8,6 @@ const jwt = require("jsonwebtoken");
 const validator = Joi.object({
     name: Joi.string().min(4).max(40),
     lastName: Joi.string().min(4).max(40),
-    photo: Joi.string().uri().message("INVALID_URL"),
     mail: Joi.string().email({
         minDomainSegments: 2,
         tlds: { allow: ["com", "net"] },
@@ -46,7 +45,6 @@ const userController = {
                     user = await new User({
                         name,
                         lastName,
-                        photo,
                         country,
                         mail,
                         password: [password],
@@ -68,7 +66,6 @@ const userController = {
                     user = await new User({
                         name,
                         lastName,
-                        photo,
                         country,
                         mail,
                         password: [password],
@@ -152,7 +149,6 @@ const userController = {
                             mail: user.mail,
                             role: user.role,
                             from: user.from,
-                            photo: user.photo,
                             country: user.country
                         };
                         user.logged = true;
@@ -184,7 +180,6 @@ const userController = {
                             mail: user.mail,
                             role: user.role,
                             from: user.from,
-                            photo: user.photo,
                         };
                         user.logged = true;
                         await user.save();
@@ -274,7 +269,6 @@ const userController = {
                     lastName: user.lastName,
                     mail: user.mail,
                     role: user.role,
-                    photo: user.photo,
                     country: user.country,
                 }
                 res.status(200).json({
